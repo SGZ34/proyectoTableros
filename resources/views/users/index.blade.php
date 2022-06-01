@@ -4,6 +4,9 @@
     Usuarios
 @endsection
 
+
+
+
 @section('content')
     <div class="container">
         <div class="card">
@@ -46,4 +49,13 @@
             </div>
           </div>
     </div>
+@endsection
+
+@section('scripts')
+@if (Session::has("success"))
+<script>
+  alertify.set("notifier", "position", "top-right")
+  alertify.success("{{Session::get('success')}}")
+</script>
+@endif
 @endsection

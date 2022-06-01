@@ -12,6 +12,8 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware("can:/users")->only('index');
+        $this->middleware("can:/users/edit")->only('edit');
+        $this->middleware("can:/users/update")->only('update');
     }
 
     public function index()
@@ -64,7 +66,11 @@ class UsersController extends Controller
 
         $roles = Role::all();
 
-        return view("users.edit", compact("user", "roles"));
+        $rolesDelUsuario = $user->getRoleNames();
+
+
+
+        return view("users.edit", compact("user", "roles", "rolesDelUsuario"));
     }
 
     /**
@@ -76,7 +82,28 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($id != null) {
+            $user = User::find($id);
+            if ($user) {
+                $campos = [
+                    'name' => 'required|string|min:4|max:20',
+                    'email' => 'required|email|min:10|max:80|unique:users,email,' . $user->id
+                ];
+
+                $this->validate($request, $campos);
+
+                $user->roles()->sync($request->roles);
+
+                $user->update([
+                    "name" => $request["name"],
+                    "email" => $request["email"]
+                ]);
+
+                return redirect("/users")->with("success", "Usuario editado satisfactoriamente");
+            }
+            return redirect("/users")->with("error", "Usuario no encontrado");
+        }
+        return redirect("/users")->with("error", "Usuario no encontrado");
     }
 
     /**

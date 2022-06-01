@@ -15,7 +15,7 @@ Usuarios
         </div>
         <div class="card-body">
 
-            <form action="/users">
+            <form action="/users/{{$user->id}}" method="POST">
                 @csrf
                 @method("PUT")
                 <div class="row mb-2">
@@ -34,10 +34,16 @@ Usuarios
 
                 <div class="mb-2">
                     <label for="name">Seleccione los roles</label>
-                    @foreach ($roles as $rol)
+                    @foreach ($roles as $key => $rol)
                     <div class="d-block">
-                        <input type="checkbox" name="roles[]" id="" value="{{$rol->id}}">
-                        <label for=""> {{$rol->name}}</label>
+                        <label for="">
+                            <input type="checkbox" name="roles[]" value="{{$rol->id}}" 
+                                @foreach ($rolesDelUsuario as $rolDelUsuario)
+                                    {{($rol->name == $rolDelUsuario ? 'checked' : '')}}
+                                @endforeach
+                            >
+                            {{$rol->name}}
+                        </label>
                     </div>
                     @endforeach
                 </div>
@@ -48,3 +54,4 @@ Usuarios
     </div>
 </div>
 @endsection
+
