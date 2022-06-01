@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+        $this->middleware("can:/users")->only('index');
+    }
+
     public function index()
     {
-        //
+        $users = User::all();
+        return view("users.index", compact("users"));
     }
 
     /**
@@ -56,7 +60,11 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        $roles = Role::all();
+
+        return view("users.edit", compact("user", "roles"));
     }
 
     /**
