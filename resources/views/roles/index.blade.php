@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Usuarios
+Roles
 @endsection
 
 
@@ -10,37 +10,38 @@ Usuarios
 @section('content')
 
 <div class="container">
-    <div class="card">
+    <div class="d-flex justify-content-center">
+        <a href="/roles/create" class="btn btn-primary">Crear Rol</a>
+    </div>
+    <div class="card mt-2">
         <div class="card-body">
-          <table class="table table-bordered table-striped" id="users">
+          <table class="table table-bordered table-striped" id="roles">
             <thead>
               <tr>
                 <th>#</th>
                 <th>Nombre</th>
-                <th>Correo electrónico</th>
                 <th>Estado</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($users as $user)
+              @foreach ($roles as $rol)
               <tr>
-                <td>{{$user->id}}</td>
-                <td>{{$user->name}}</td>
-                <td>{{$user->email}}</td>
+                <td>{{$rol->id}}</td>
+                <td>{{$rol->name}}</td>
                 <td>
-                  @if ($user->state == 1)
+                  @if ($rol->state == 1)
                   <span class="badge badge-primary">Activo</span>
                   @else
                   <span class="badge badge-danger">Inactivo</span>
                   @endif
                 </td>
                 <td>
-                  <a href="/users/{{$user->id}}/edit" class="btn btn-warning text-white">Editar</a>
-                  @if ($user->state == 1)
-                  <a href="/users/updateState/0/{{$user->id}}" class="btn btn-danger">Deshabilitar</a>
+                  <a href="/roles/{{$rol->id}}/edit" class="btn btn-warning text-white">Editar</a>
+                  @if ($rol->state == 1)
+                  <a href="/roles/updateState/0/{{$rol->id}}" class="btn btn-danger">Deshabilitar</a>
                   @else
-                  <a href="/users/updateState/1/{{$user->id}}" class="btn btn-success">Habilitar</a>
+                  <a href="/roles/updateState/1/{{$rol->id}}" class="btn btn-success">Habilitar</a>
                   @endif
                 </td>
               </tr>
@@ -49,8 +50,8 @@ Usuarios
           </table>
         </div>
       </div>
-      
 </div>
+
 @endsection
 
 @section('scripts')
@@ -302,7 +303,7 @@ Usuarios
 
   
   $(document).ready(function () {
-    $('#users').DataTable({
+    $('#roles').DataTable({
       'language': spanish
     });
   });

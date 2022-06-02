@@ -148,7 +148,7 @@
 
     <script src="/plugins/jquery.min.js"></script>
 
-    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/plugins/bootstrap.bundle.min.js"></script>
 
     <script src="/js/datatables.min.js"></script>
 

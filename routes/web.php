@@ -3,6 +3,7 @@
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RolesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,6 @@ Route::group(['middleware' => 'state'], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::resource("users", UsersController::class);
     Route::get("/users/updateState/{state}/{id}", [UsersController::class, 'updateState']);
+    Route::resource("roles", RolesController::class);
+    Route::get("/roles/updateState/{state}/{id}", [RolesController::class, 'updateState']);
 });

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Usuarios
+Editar usuario
 @endsection
 
 
