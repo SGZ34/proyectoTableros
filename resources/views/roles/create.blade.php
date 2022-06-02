@@ -15,7 +15,7 @@ Crear rol
         </div>
         <div class="card-body">
 
-            <form action="/users" method="POST">
+            <form action="/roles" method="POST">
                 @csrf
                 <div class="row mb-2">
                     <label for="name">Nombre</label>
@@ -40,7 +40,6 @@ Crear rol
                     </div>
                     @endforeach
                 </div>
-
                 <button type="submit" class="btn btn-primary btn-block">Crear</button>
             </form>
         </div>

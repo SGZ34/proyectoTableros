@@ -43,7 +43,28 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'name' => 'required|min:3|max:20|unique:roles'
+        ];
+
+        $this->validate($request, $campos);
+
+        $permisos = $request->permisos;
+
+
+
+        if ($permisos == null) {
+            return back()->with("error", "Por favor seleccione un permiso o varios permisos");
+        }
+
+        $rol = Role::create([
+            "name" => $request["name"],
+            "state" => 1
+        ]);
+
+        $rol->syncPermissions($permisos);
+
+        return redirect("/roles")->with("success", "Se ha creado el rol satisfactoriamente");
     }
 
     /**
@@ -65,7 +86,14 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rol = Role::find($id);
+
+        $permisos = Permission::all();
+
+        $permisosDelRol = $rol->permissions;
+
+        // dd($permisosDelRol);
+        return view("roles.edit", compact("rol", "permisos", "permisosDelRol"));
     }
 
     /**
@@ -77,7 +105,32 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($id != null) {
+            $rol = Role::findOrFail($id);
+            if ($rol) {
+                $campos = [
+                    'name' => 'required|min:3|max:20|unique:roles,name,' . $rol->id
+                ];
+
+                $this->validate($request, $campos);
+
+                $permisos = $request->permisos;
+
+                if ($permisos == null) {
+                    return back()->with("error", "Por favor seleccione un permiso o varios permisos");
+                }
+
+                $rol->update([
+                    "name" => $request["name"],
+                ]);
+
+                $rol->syncPermissions($permisos);
+
+                return redirect("/roles")->with("success", "Se ha creado el rol satisfactoriamente");
+            }
+            return redirect("/roles")->with("error", "El cambio de información de información del rol no se pudo realizar");
+        }
+        return redirect("/roles")->with("error", "El cambio de información de información del rol no se pudo realizar");
     }
 
     /**

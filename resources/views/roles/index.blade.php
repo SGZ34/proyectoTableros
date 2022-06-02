@@ -309,11 +309,4 @@ Roles
   });
 </script>
 
-
-@if (Session::has("success"))
-<script>
-  alertify.set("notifier", "position", "top-right")
-  alertify.success('{{Session::get('success')}}')
-</script>
-@endif
 @endsection

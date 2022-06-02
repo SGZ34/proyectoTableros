@@ -154,17 +154,31 @@
 
     <script src="/dist/adminlte.js?v=3.2.0"></script>
 
-    <script src="/plugins/Chart.min.js"></script>
+    
 
     <script src="/dist/demo.js"></script>
 
-    <script src="/dist/dashboard3.js"></script>
+    
 
     <script src="/js/alertify.min.js"></script>
     
     
 
     @yield('scripts')
+
+    @if (Session::has("success"))
+<script>
+  alertify.set("notifier", "position", "top-right")
+  alertify.success('{{Session::get('success')}}')
+</script>
+@endif
+
+@if (Session::has("error"))
+<script>
+  alertify.set("notifier", "position", "top-right")
+  alertify.error('{{Session::get('error')}}')
+</script>
+@endif
 </body>
 
 </html>
