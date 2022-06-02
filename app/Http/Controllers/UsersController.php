@@ -14,6 +14,7 @@ class UsersController extends Controller
         $this->middleware("can:/users")->only('index');
         $this->middleware("can:/users/edit")->only('edit');
         $this->middleware("can:/users/update")->only('update');
+        $this->middleware("can:/users/updateState")->only('updateState');
     }
 
     public function index()
@@ -115,5 +116,20 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateState($state, $id)
+    {
+        if (($state >= 0 && $state <= 1) && $id != null) {
+            $user = User::findOrFail($id);
+            if ($user) {
+                $user->update([
+                    "state" => $state
+                ]);
+                return redirect("/users")->with("success", "Cambio de estado exitoso");
+            }
+            return redirect("/users")->with("error", "El estado no se pudo cambiar");
+        }
+        return redirect("/users")->with("error", "El estado no se pudo cambiar");
     }
 }

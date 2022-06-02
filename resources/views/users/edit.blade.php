@@ -23,6 +23,10 @@ Usuarios
                     <input type="text" class="form-control" name="name" id="name" value="{{$user->name}}"
                         aria-describedby="helpId" placeholder="" required>
 
+                    @error('name')
+                        <span class="text-danger"><b>{{$message}}</b></span>
+                    @enderror    
+
                 </div>
 
                 <div class="row mb-2">
@@ -30,6 +34,9 @@ Usuarios
                     <input type="email" class="form-control" name="email" id="email" value="{{$user->email}}"
                         aria-describedby="helpId" placeholder="" required>
 
+                        @error('email')
+                        <span class="text-danger"><b>{{$message}}</b></span>
+                        @enderror    
                 </div>
 
                 <div class="mb-2">

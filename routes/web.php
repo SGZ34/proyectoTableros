@@ -21,6 +21,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::resource("users", UsersController::class);
+
+Route::group(['middleware' => 'state'], function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::resource("users", UsersController::class);
+    Route::get("/users/updateState/{state}/{id}", [UsersController::class, 'updateState']);
+});

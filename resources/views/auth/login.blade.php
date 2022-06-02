@@ -63,3 +63,17 @@
     </div>
 </div>
 @endsection
+
+
+@section('scripts')
+    
+@if (Session::has("errorState"))
+<script>
+    alertify.set('notifier', 'position', 'top-right');
+    alertify.error('{{ Session::get('errorState') }}');
+</script>
+@endif
+@endsection
+
+
+

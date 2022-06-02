@@ -18,6 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+     <!-- include the style -->
+<link rel="stylesheet" href="/css/alertify.min.css" />
+<!-- include a theme -->
+<link rel="stylesheet" href="/css/themes/default.min.css" />
 </head>
 <body>
     <div id="app">
@@ -79,5 +84,9 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="/js/alertify.min.js"></script>
+
+    @yield('scripts')
 </body>
 </html>
