@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Usuarios
+Tableros
 @endsection
 
 
@@ -11,43 +11,45 @@ Usuarios
 
 <div class="container">
     <div class="d-flex justify-content-center">
-        <a href="/users/create" class="btn btn-primary">Crear usuario</a>
+        <a href="/tableros/create" class="btn btn-primary">Crear tablero</a>
     </div>
     <div class="card mt-2">
         <div class="card-body">
-          <table class="table table-bordered table-striped" id="users">
+          <table class="table table-bordered table-striped" id="tableros">
             <thead>
               <tr>
                 <th>#</th>
-                <th>Nombre</th>
-                <th>Correo electrónico</th>
+                <th>Título</th>
+                <th>Descripción</th>
                 <th>Estado</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($users as $user)
+              @foreach ($tableros as $tablero)
               <tr>
-                <td>{{$user->id}}</td>
-                <td>{{$user->name}}</td>
-                <td>{{$user->email}}</td>
+                <td>{{$tablero->id}}</td>
+                <td>{{$tablero->title}}</td>
+                <td>{{$tablero->description}}</td>
                 <td>
-                  @if ($user->state == 1)
+                  @if ($tablero->state == 1)
                   <span class="badge badge-primary">Activo</span>
                   @else
                   <span class="badge badge-danger">Inactivo</span>
                   @endif
                 </td>
+                
                 <td>
-                  <a href="/users/{{$user->id}}/edit" class="btn btn-warning text-white">Editar</a>
-                  @if ($user->state == 1)
-                  <a href="/users/updateState/0/{{$user->id}}" class="btn btn-danger">Deshabilitar</a>
+                  <a href="/tableros/{{$tablero->id}}/edit" class="btn btn-warning text-white">Editar</a>
+                  @if ($tablero->state == 1)
+                  <a href="/tableros/updateState/0/{{$tablero->id}}" class="btn btn-danger">Deshabilitar</a>
                   @else
-                  <a href="/users/updateState/1/{{$user->id}}" class="btn btn-success">Habilitar</a>
+                  <a href="/tableros/updateState/1/{{$tablero->id}}" class="btn btn-success">Habilitar</a>
                   @endif
                 </td>
               </tr>
               @endforeach
+             
             </tbody>
           </table>
         </div>
@@ -305,7 +307,7 @@ Usuarios
 
   
   $(document).ready(function () {
-    $('#users').DataTable({
+    $('#tableros').DataTable({
       'language': spanish
     });
   });

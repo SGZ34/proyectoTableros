@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\TablerosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +26,23 @@ Auth::routes();
 
 
 
-Route::group(['middleware' => 'state'], function () {
+Route::group(['middleware' => ['state', 'auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    // Users
     Route::resource("users", UsersController::class);
+    Route::get("/users/editPassword/{id}", [UsersController::class, 'editPassword']);
+    Route::post("/users/updatePassword/{id}", [UsersController::class, 'updatePassword']);
     Route::get("/users/updateState/{state}/{id}", [UsersController::class, 'updateState']);
+
+    // Roles
     Route::resource("roles", RolesController::class);
     Route::get("/roles/updateState/{state}/{id}", [RolesController::class, 'updateState']);
+
+    // Tableros
+    Route::resource("tableros", TablerosController::class);
+    Route::get("/tableros/updateState/{state}/{id}", [TablerosController::class, 'updateState']);
+
+    //dashboard
+    Route::get("/dashboard", [DashboardController::class, 'index']);
 });

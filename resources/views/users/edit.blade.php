@@ -24,8 +24,8 @@ Editar usuario
                         aria-describedby="helpId" placeholder="" required>
 
                     @error('name')
-                        <span class="text-danger"><b>{{$message}}</b></span>
-                    @enderror    
+                    <span class="text-danger"><b>{{$message}}</b></span>
+                    @enderror
 
                 </div>
 
@@ -34,26 +34,27 @@ Editar usuario
                     <input type="email" class="form-control" name="email" id="email" value="{{$user->email}}"
                         aria-describedby="helpId" placeholder="" required>
 
-                        @error('email')
-                        <span class="text-danger"><b>{{$message}}</b></span>
-                        @enderror    
+                    @error('email')
+                    <span class="text-danger"><b>{{$message}}</b></span>
+                    @enderror
                 </div>
 
+                @if ($usuarioEdit->hasRole("admin"))
                 <div class="mb-2">
                     <label for="name">Seleccione los roles</label>
                     @foreach ($roles as $key => $rol)
                     <div class="d-block">
                         <label for="">
-                            <input type="checkbox" name="roles[]" value="{{$rol->id}}" 
-                                @foreach ($rolesDelUsuario as $rolDelUsuario)
-                                    {{($rol->name == $rolDelUsuario ? 'checked' : '')}}
-                                @endforeach
+                            <input type="checkbox" name="roles[]" value="{{$rol->id}}" @foreach ($rolesDelUsuario as
+                                $rolDelUsuario) {{($rol->name == $rolDelUsuario ? 'checked' : '')}}
+                            @endforeach
                             >
                             {{$rol->name}}
                         </label>
                     </div>
                     @endforeach
                 </div>
+                @endif
 
                 <button type="submit" class="btn btn-primary btn-block">Editar</button>
             </form>
@@ -61,4 +62,3 @@ Editar usuario
     </div>
 </div>
 @endsection
-

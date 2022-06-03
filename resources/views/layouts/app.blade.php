@@ -44,11 +44,15 @@
                            onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
                             {{ __('Cerrar sesión') }}
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
+
+                        <a href="/users/{{auth()->user()->id}}/edit" class="dropdown-item">Configuración <i class="fa-solid fa-user-pen"></i></a>
+                        <a href="/users/editPassword/{{auth()->user()->id}}" class="dropdown-item">Cambiar contraseña <i class="fa-solid fa-key"></i></a>
                     </div>
                 </li>
             </ul>
@@ -57,7 +61,7 @@
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-            <a href="#" class="brand-link text-center">
+            <a href="/home" class="brand-link text-center">
                 
                 <h2 class="brand-text font-weight-light text-center">Tableros</h2>
             </a>
@@ -77,12 +81,23 @@
                             <a href="/dashboard" class="nav-link">
                                 <p>
                                     Dashboard
-                                    <i class="fa-solid fa-border-all right"></i>
+                                    <i class="fa-solid fa-chart-line right"></i>
+                                    
                                 </p>
                             </a>
                         </li>
                         @endcan
 
+                        @can('/tableros')
+                        <li class="nav-item">
+                            <a href="/tableros" class="nav-link">
+                                <p>
+                                    Tableros
+                                    <i class="fa-solid fa-border-all right"></i>
+                                </p>
+                            </a>
+                        </li>
+                        @endcan
                         @can('/roles')
                         <li class="nav-item">
                             <a href="/roles" class="nav-link">

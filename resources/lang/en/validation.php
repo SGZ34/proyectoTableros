@@ -148,7 +148,11 @@ return [
     */
 
     'attributes' => [
-        'name' => 'nombre'
+        'name' => 'nombre',
+        'password' => 'contraseña',
+        'confirm-password' => 'confirmar contraseña',
+        'new-password' =>  'nueva contraseña',
+        'file' => 'archivo',
     ],
 
 ];
