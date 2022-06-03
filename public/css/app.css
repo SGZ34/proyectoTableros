@@ -3146,13 +3146,13 @@ textarea.form-control-lg {
 
 .btn-warning {
   color: #000;
-  background-color: #ff8138;
-  border-color: #ff8138;
+  background-color: #ffc107;
+  border-color: #ffc107;
 }
 .btn-warning:hover {
   color: #000;
-  background-color: #ff8138;
-  border-color: #ff8138;
+  background-color: #ffca2c;
+  border-color: #ffc720;
 }
 .btn-check:focus + .btn-warning, .btn-warning:focus {
   color: #000;
@@ -3365,13 +3365,13 @@ textarea.form-control-lg {
 }
 
 .btn-outline-warning {
-  color: #ff8138;
-  border-color: #ff8138;
+  color: #ffc107;
+  border-color: #ffc107;
 }
 .btn-outline-warning:hover {
-  color: #fff;
-  background-color: #ff8138;
-  border-color: #ff8138;
+  color: #000;
+  background-color: #ffc107;
+  border-color: #ffc107;
 }
 .btn-check:focus + .btn-outline-warning, .btn-outline-warning:focus {
   box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.5);
