@@ -18,5 +18,6 @@ return [
     'sent' => 'Le hemos enviado un correo de cambio de contraseña!',
     'token' => 'El código de cambio de contraseña es inválido.',
     'user' => "No podemos encontrar un usuario con ese nombre.",
+    'throttled' => 'Por favor espera antes de reintentar.',
 
 ];

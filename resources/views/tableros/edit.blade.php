@@ -20,11 +20,13 @@ Editar tablero
                 @method("PUT")
                 <div class="row mb-2">
                     <label for="title">Título</label>
-                    <input type="text" class="form-control" name="title" id="title" value="{{$tablero->title}}"
+                    <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{$tablero->title}}"
                         aria-describedby="helpId" placeholder="" required>
 
                     @error('title')
-                        <span class="text-danger"><b>{{$message}}</b></span>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
                     @enderror    
 
                 </div>
@@ -32,18 +34,22 @@ Editar tablero
                 <div class="row mb-2">
                     <label for="description">Descripción</label>
 
-                    <textarea name="description" id="description" resize='none' rows="4" class="form-control" required>{{$tablero->description}}</textarea>
+                    <textarea name="description" id="description" resize='none' rows="4" class="form-control @error('description') is-invalid @enderror" required>{{$tablero->description}}</textarea>
                         @error('description')
-                        <span class="text-danger"><b>{{$message}}</b></span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror    
                 </div>
 
 
                 <div class="row mb-2">
                         <label for="file" class="form-label">Seleccione un archivo</label>
-                        <input class="form-control" type="file" id="file" name="file" value="{{$tablero->file}}">
+                        <input class="form-control @error('file') is-invalid @enderror" type="file" id="file" name="file" value="{{$tablero->file}}" required>
                         @error('file')
-                        <span class="text-danger"><b>{{$message}}</b></span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror    
                 </div>
 

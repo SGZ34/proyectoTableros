@@ -19,11 +19,13 @@ Crear rol
                 @csrf
                 <div class="row mb-2">
                     <label for="name">Nombre</label>
-                    <input type="text" class="form-control" name="name" id="name" value="{{old('name')}}"
-                        aria-describedby="helpId" placeholder="" required>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{old('name')}}"
+                    required>
 
                     @error('name')
-                        <span class="text-danger"><b>{{$message}}</b></span>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
                     @enderror    
 
                 </div>

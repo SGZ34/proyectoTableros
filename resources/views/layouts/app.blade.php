@@ -194,6 +194,15 @@
   alertify.error('{{Session::get('error')}}')
 </script>
 @endif
+
+@if (session('status'))
+<script>
+    alertify.set("notifier", "position", "top-right")
+  alertify.success('{{Session::get('status')}}')
+
+</script>
+
+@endif
 </body>
 
 </html>

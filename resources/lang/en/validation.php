@@ -153,6 +153,8 @@ return [
         'confirm-password' => 'confirmar contraseña',
         'new-password' =>  'nueva contraseña',
         'file' => 'archivo',
+        'title' => 'título',
+        'description' => 'descripción',
     ],
 
 ];
