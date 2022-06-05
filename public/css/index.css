@@ -1,0 +1,53 @@
+.eventosModal{
+    cursor: pointer;
+}
+
+.imagen-eventos{
+    max-height:350px;
+}
+
+.imagen-modal{
+    max-width: 450px;
+    height:450px;
+    object-fit: cover;
+}
+
+.modal-evento{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #525659;
+    transform: translateY(100%);
+    z-index: -1;
+    transition: all 0.5s ease-in-out;
+}
+
+.aparecer-modal{
+    transform: translateY(0);
+    z-index: 10000;    
+}
+
+.modal-evento.aparecer-modal ~ #icono-modal{
+    position: absolute;
+    z-index: 10000;
+}
+
+.embed-personalizado{
+    position:fixed;
+    top: 0;
+    left: 0;
+    padding-top: 45px;
+    width: 100%;
+}
+
+
+.embed-personalizado embed{
+    width: 100%;
+    height: 92vh;
+}
+
+#icono-modal{
+    color: #ffc747;
+}

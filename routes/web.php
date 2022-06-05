@@ -42,6 +42,7 @@ Route::group(['middleware' => ['state', 'auth']], function () {
     // Tableros
     Route::resource("tableros", TablerosController::class);
     Route::get("/tableros/updateState/{state}/{id}", [TablerosController::class, 'updateState']);
+    Route::get("/tableros/download/{id}", [DashboardController::class, 'download']);
 
     //dashboard
     Route::get("/dashboard", [DashboardController::class, 'index']);

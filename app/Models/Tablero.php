@@ -11,7 +11,7 @@ class Tablero extends Model
 
     protected $table = 'tableros';
 
-    protected $fillable = ['title', 'description', 'state', 'file'];
+    protected $fillable = ['title', 'description', 'state', 'file', 'idMime'];
 
-    public $timestamps = false;
+    public $timestamps = true;
 }

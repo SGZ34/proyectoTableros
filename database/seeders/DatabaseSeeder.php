@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(RolSeeder::class);
+        $this->call(MimeSeeder::class);
         User::create([
             "name" => "Admin",
             "email" => "admin@gmail.com",

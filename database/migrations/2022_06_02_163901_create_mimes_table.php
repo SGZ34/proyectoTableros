@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tableros', function (Blueprint $table) {
+        Schema::create('mimes', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('description')->nullable(true);
-            $table->string('file')->nullable(true);
-            $table->boolean('state');
-            $table->unsignedBigInteger("idMime");
-            $table->foreign("idMime")->references("id")->on("mimes");
-            $table->timestamps();
+            $table->string("name");
+            $table->string("description");
         });
     }
 
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('mimes');
     }
 };

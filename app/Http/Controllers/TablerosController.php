@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mime;
 use App\Models\Tablero;
 use Illuminate\Http\Request;
 
@@ -32,16 +33,17 @@ class TablerosController extends Controller
 
     public function store(Request $request)
     {
-
+        // dd($request->file->getMimeType());
         $campos = [
             'title' => 'required|min:4|max:40|string',
             'description' => 'required|min:10|max:200|string',
-            'file' => 'required|file|max:5000|mimes:pdf'
+            'file' => 'required|file|max:5000'
         ];
 
         $this->validate($request, $campos);
 
         if ($request->hasFile('file')) {
+            $idMime = Mime::where("name", $request->file->getMimeType())->first();
             $file = $request->file("file");
             $nombre = "file_" . time() . "." . $file->guessExtension();
             $request->file->move(public_path('files'), $nombre);
@@ -51,6 +53,7 @@ class TablerosController extends Controller
                 "description" => $request["description"],
                 "state" => 1,
                 "file" => $nombre,
+                "idMime" => $idMime->id
             ]);
 
             return redirect("/tableros")->with("success", "Tablero creado satisfactoriamente");
@@ -89,7 +92,7 @@ class TablerosController extends Controller
                 $campos = [
                     'title' => 'required|min:4|max:40|string',
                     'description' => 'required|min:10|max:200|string',
-                    'file' => 'required|file|max:5000|mimes:pdf'
+                    'file' => 'required|file|max:5000'
                 ];
 
                 $this->validate($request, $campos);
