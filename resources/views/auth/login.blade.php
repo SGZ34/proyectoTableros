@@ -67,10 +67,10 @@
 
 @section('scripts')
     
-@if (Session::has("errorState"))
+@if (Session::has("error"))
 <script>
     alertify.set('notifier', 'position', 'top-right');
-    alertify.error('{{ Session::get('errorState') }}');
+    alertify.error('{{ Session::get('error') }}');
 </script>
 @endif
 @endsection

@@ -113,6 +113,15 @@ class TablerosController extends Controller
                 }
 
                 if ($request->hasFile('file')) {
+                    $idMime = Mime::where("name", $request->file->getMimeType())->first();
+
+                    if (!$idMime) {
+                    $newMime = Mime::create([
+                    "name" => $request->file->getMimeType(),
+                    "description" => "Archivo " . $request->file("file")->guessExtension()
+                    ]);
+                }
+                    $idMime = $newMime;
                     $file = $request->file("file");
                     $nombre = "file_" . time() . "." . $file->guessExtension();
                     $request->file->move(public_path('files'), $nombre);
@@ -120,12 +129,11 @@ class TablerosController extends Controller
                         "title" => $request["title"],
                         "description" => $request["description"],
                         "file" => $nombre,
+                        "idMime" => $idMime->id
                     ]);
-                }
-
-
+             
                 return redirect("/tableros")->with("success", "Tablero creado satisfactoriamente");
-
+            }
                 return redirect("/tableros")->with("error", "Ha ocurrido un error al cargar el archivo");
             }
         }
