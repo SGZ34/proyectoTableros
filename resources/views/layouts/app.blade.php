@@ -80,7 +80,7 @@
                         <li class="nav-item">
                             <a href="/dashboard" class="nav-link">
                                 <p>
-                                    Dashboard
+                                    Tableros
                                     <i class="fa-solid fa-chart-line right"></i>
                                     
                                 </p>
@@ -92,7 +92,7 @@
                         <li class="nav-item">
                             <a href="/tableros" class="nav-link">
                                 <p>
-                                    Tableros
+                                    Gestión de tableros
                                     <i class="fa-solid fa-border-all right"></i>
                                 </p>
                             </a>

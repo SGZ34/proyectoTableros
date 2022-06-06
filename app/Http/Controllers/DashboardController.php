@@ -32,6 +32,25 @@ class DashboardController extends Controller
                 $path = public_path("/files/" . $tablero->file);
                 return response()->download($path);
             }
+            return redirect("/dashboard")->with("error", "El archivo solicitado no fue encontrado");
         }
+        return redirect("/dashboard")->with("error", "El archivo solicitado no fue encontrado");
+    }
+
+
+    public function show($id)
+    {
+        if ($id != null) {
+            $tablero = Tablero::select("tableros.*", "mimes.name as mimeName")
+                ->join("mimes", "mimes.id", "=", "tableros.idMime")
+                ->where("tableros.id", $id)
+                ->first();
+
+            if ($tablero) {
+                return view("dashboard.show", compact("tablero"));
+            }
+            return redirect("/dashboard")->with("error", "El tablero solicitado no fue encontrado");
+        }
+        return redirect("/dashboard")->with("error", "El tablero solicitado no fue encontrado");
     }
 }

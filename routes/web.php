@@ -46,4 +46,5 @@ Route::group(['middleware' => ['state', 'auth']], function () {
 
     //dashboard
     Route::get("/dashboard", [DashboardController::class, 'index']);
+    Route::get("/dashboard/show/{id}", [DashboardController::class, 'show']);
 });
